@@ -16,11 +16,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrismaService = void 0;
 const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
+const adapter_pg_1 = require("@prisma/adapter-pg");
 const pg_1 = require("pg");
 const constants_1 = require("./constants");
 let PrismaService = PrismaService_1 = class PrismaService extends client_1.PrismaClient {
     constructor(moduleOptions) {
-        super();
+        super({ adapter: new adapter_pg_1.PrismaPg({ connectionString: moduleOptions.url }) });
         this.moduleOptions = moduleOptions;
         this.logger = new common_1.Logger(PrismaService_1.name);
         this.listeners = new Map();

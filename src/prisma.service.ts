@@ -1,5 +1,6 @@
 import {Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit} from '@nestjs/common';
-import {PrismaClient, Prisma} from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
+import {PrismaPg} from "@prisma/adapter-pg";
 import {Client} from "pg";
 import {TableChangeListener} from "./table-change-listener";
 import {PRISMA_OPTIONS} from "./constants";
@@ -17,7 +18,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     constructor(
         @Inject(PRISMA_OPTIONS) private readonly moduleOptions: PrismaModuleOptions
     ) {
-        super()
+        super({adapter: new PrismaPg({connectionString: moduleOptions.url})})
     }
 
     async onModuleInit() {
