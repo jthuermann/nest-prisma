@@ -58,21 +58,14 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
                 RETURNS trigger AS $$
                 DECLARE
                     payload JSON;
-                    row_id INT;
                 BEGIN
-                    IF (TG_OP = 'DELETE') THEN
-                      row_id := OLD.id;
-                    ELSE
-                      row_id := NEW.id;
-                    END IF;
-                    
                     payload := json_build_object(
                       'table', TG_TABLE_NAME,
                       'action', TG_OP,
                       'old', OLD,
                       'now', NEW
                     );
-                    
+
                     PERFORM pg_notify('table_changes', payload::text);
                     RETURN NULL;
                 END;
