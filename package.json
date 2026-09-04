@@ -1,12 +1,21 @@
 {
     "name": "@jthuermann/nest-prisma",
     "license": "MIT",
-    "version": "2.0.0",
-    "private": true,
+    "version": "2.0.2",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jthuermann/nest-prisma.git"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
-        "dist"
+        "dist/**/*.js",
+        "dist/**/*.d.ts",
+        "dist/**/*.js.map",
+        "LICENSE"
     ],
     "scripts": {
         "build": "tsc"
