@@ -1,5 +1,6 @@
 {
     "name": "@jthuermann/nest-prisma",
+    "license": "MIT",
     "version": "2.0.0",
     "private": true,
     "main": "dist/index.js",
